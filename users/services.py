@@ -1,7 +1,7 @@
 from fastapi.exceptions import HTTPException
 
 from core.security import get_hasshed_password
-from users.model import UserModel
+from models.User import UserModel
 
 
 async def create_user_account(data, db):

@@ -18,37 +18,37 @@ class Settings(BaseSettings):
     DB_PORT: str = str(os.getenv("DB_PORT"))
     DB_NAME: str = str(os.getenv("DB_NAME"))
     DB_URL: str = (
-        f"mysql+pymysql://{DB_USER}:%s@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-        % quote_plus(DB_PASSWORD)
+        f"mysql+pymysql://{DB_USER}:{quote_plus(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     )
 
 
-def gett_settings() -> Settings:
+def get_settings() -> Settings:
     return Settings()
-    # Redis
-    REDIS_HOST: str
-    REDIS_PORT: str
-    REDIS_DB: int
 
-    # JWT
-    JWT_SECRET_KEY: str
-    JWT_ALGORITHM: str
-    JWT_EXPIRE_MINUTES: int
+    # # Redis
+    # REDIS_HOST: str
+    # REDIS_PORT: str
+    # REDIS_DB: int
 
-    # Email
-    EMAIL_USER: str
-    EMAIL_PASSWORD: str
-    EMAIL_PORT: str
-    EMAIL_SMTP: str
+    # # JWT
+    # JWT_SECRET_KEY: str
+    # JWT_ALGORITHM: str
+    # JWT_EXPIRE_MINUTES: int
 
-    # App
-    APP_HOST: str
-    APP_PORT: str
-    APP_NAME: str
-    APP_ENV: str
+    # # Email
+    # EMAIL_USER: str
+    # EMAIL_PASSWORD: str
+    # EMAIL_PORT: str
+    # EMAIL_SMTP: str
 
-    # Debug
-    DEBUG: bool
+    # # App
+    # APP_HOST: str
+    # APP_PORT: str
+    # APP_NAME: str
+    # APP_ENV: str
 
-    class Config:
-        env_file = env_path
+    # # Debug
+    # DEBUG: bool
+
+    # class Config:
+    #     env_file = env_path
