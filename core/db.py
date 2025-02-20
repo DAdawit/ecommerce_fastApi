@@ -3,9 +3,9 @@ from typing import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-from core.config import gett_settings
+from core.config import get_settings
 
-settings = gett_settings()
+settings = get_settings()
 
 engin = create_engine(
     settings.DB_URL,
