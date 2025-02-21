@@ -3,7 +3,12 @@ from sqlalchemy.orm import Session
 
 from core.db import get_db
 from users.schemas import CreateUserRequest
-from users.services import create_user_account
+from users.services import UserService
+
+
+def get_user_service(db: Session = Depends(get_db)) -> UserService:
+    return UserService(db)
+
 
 router = APIRouter(
     prefix="/users",
@@ -13,6 +18,15 @@ router = APIRouter(
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-async def create_user(data: CreateUserRequest, db: Session = Depends(get_db)):
-    user = await create_user_account(data, db)
+async def create_user(
+    data: CreateUserRequest,
+    user_service: UserService = Depends(get_user_service),
+):
+    user = await user_service.create_user_account(data)
     return user
+
+
+@router.get("", status_code=status.HTTP_200_OK)
+async def get_users(UserService: UserService = Depends(get_user_service)):
+    users = await UserService.get_users()
+    return users
