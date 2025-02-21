@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy.orm import Session
 
 from core.db import get_db
@@ -27,6 +27,11 @@ async def create_user(
 
 
 @router.get("", status_code=status.HTTP_200_OK)
-async def get_users(UserService: UserService = Depends(get_user_service)):
-    users = await UserService.get_users()
+async def get_users(
+    page: int = 1,
+    per_page: int = 3,
+    user_service: UserService = Depends(get_user_service),
+):
+    # return [page, per_page]
+    users = await user_service.get_users(page=page, per_page=per_page)
     return users
