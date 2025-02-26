@@ -8,3 +8,13 @@ class CreateUserRequest(BaseModel):
     password: str = Field(
         ..., min_length=8, max_length=100, examples=["StrongPass123!"]
     )
+
+
+class UserResponse(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
+    email: str
+
+    class Config:
+        orm_mode = True

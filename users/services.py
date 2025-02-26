@@ -31,7 +31,11 @@ class UserService:
 
     async def get_users(self, page: int = 1, per_page: int = 20):
         try:
-            query = self.db.query(UserModel)
+            query = self.db.query(UserModel).with_entities(
+                UserModel.first_name,
+                UserModel.last_name,
+            )
+            # return query
             return paginate(query, self.db, page=page, per_page=per_page)
         except Exception as e:
             raise HTTPException(status_code=400, detail=str(e))
