@@ -4,6 +4,7 @@ from fastapi.exceptions import HTTPException
 from sqlalchemy.orm import Session
 
 from core.security import get_hasshed_password
+from models.Products import ProductModel
 from models.User import UserModel
 from utils.paginate import paginate
 
@@ -11,6 +12,9 @@ from utils.paginate import paginate
 class UserService:
     def __init__(self, db: Session):
         self.db = db
+
+    async def get_all_products(self):
+        return self.db.query(ProductModel).all()
 
     async def create_user_account(self, data):
         user = self.db.query(UserModel).filter(UserModel.email == data.email).first()

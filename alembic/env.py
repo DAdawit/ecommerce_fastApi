@@ -5,6 +5,7 @@ from sqlalchemy import create_engine, engine_from_config, pool
 from alembic import context
 from core.config import get_settings
 from core.db import Base
+from models.Products import ProductModel
 from models.User import UserModel
 
 # this is the Alembic Config object, which provides

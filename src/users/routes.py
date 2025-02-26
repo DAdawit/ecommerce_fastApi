@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy.orm import Session
 
 from core.db import get_db
-from users.schemas import CreateUserRequest
-from users.services import UserService
+from src.users.schemas import CreateUserRequest
+from src.users.services import UserService
 
 
 def get_user_service(db: Session = Depends(get_db)) -> UserService:
