@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, EmailStr, Field
 
 
@@ -18,3 +20,24 @@ class UserResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+from datetime import datetime
+from typing import Optional
+
+from pydantic import BaseModel, EmailStr
+
+
+class UserOut(BaseModel):
+    id: int
+    email: EmailStr
+    first_name: str
+    last_name: str
+    is_active: bool
+    is_verified: bool
+    created_at: datetime
+    updated_at: datetime | None = None
+    verified_at: datetime | None = None
+
+    class Config:
+        orm_mode = True  # Allows ORM mode for SQLAlchemy compatibility

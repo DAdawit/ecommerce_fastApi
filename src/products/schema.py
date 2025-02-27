@@ -1,6 +1,5 @@
 from datetime import datetime
 
-import sqlalchemy
 from pydantic import BaseModel, Field
 
 

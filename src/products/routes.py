@@ -1,7 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, Query, status
-from fastapi_pagination import Page, Params
+from fastapi_pagination import Page
 from sqlalchemy.orm import Session
 
 from core.db import get_db
